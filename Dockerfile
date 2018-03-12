@@ -16,4 +16,6 @@ COPY conf.d /etc/supervisor/conf.d
 # reset image's default entrypoint from jrottenberg/ffmpeg
 ENTRYPOINT []
 
+RUN echo "America/Mexico_City" > /etc/timezone
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]

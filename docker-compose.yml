@@ -1,6 +1,8 @@
-version: '3.4'
+version: '3'
 
 services:
   ingest:
-    build: .
     network_mode: "host"
+    build: .
+    cap_add:
+      - ALL
