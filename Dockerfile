@@ -8,4 +8,7 @@ RUN chmod +x /usr/local/bin/*.sh
 
 COPY conf.d /etc/supervisor/conf.d
 
+# reset image's default entrypoint from jrottenberg/ffmpeg
+ENTRYPOINT []
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
