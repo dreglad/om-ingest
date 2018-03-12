@@ -2,6 +2,5 @@ version: '3.4'
 
 services:
   ingest:
-    build:
-      context: .
-      network: host
+    build: .
+    network_mode: "host"
