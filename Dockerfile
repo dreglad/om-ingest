@@ -1,8 +1,10 @@
 FROM jrottenberg/ffmpeg
 
-RUN apt-get install -y software-properties-common && \
-    add-apt-repository ppa:graphics-drivers/ppa && \
-    apt-get update && apt-get install -y supervisor nvidia-390
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES video,compute,utility
+
+RUN apt-get update && apt-get -y dist-upgrade
+RUN  apt-get install -y supervisor
 
 RUN sed -i 's/^\(\[supervisord\]\)$/\1\nnodaemon=true/' /etc/supervisor/supervisord.conf
 
