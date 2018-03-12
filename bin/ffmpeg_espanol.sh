@@ -7,4 +7,4 @@ ffmpeg \
     -c:v h264_nvenc -profile:v main  \
     -c:a libfdk_aac -vbsf h264_mp4toannexb -strict experimental \
     -f flv \
-    "rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/english.stream"
+    "rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/espanol.stream"
