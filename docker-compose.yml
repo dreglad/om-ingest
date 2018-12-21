@@ -1,25 +1,29 @@
-version: '3.0'
+version: '3.4'
+
+x-ffmoeg:
+  &ffmpeg
+  image: jrottenberg/ffmpeg:4.0
+  restart: always
+  command: >
+      -i ${INPUT--} ${EXTRA_OUTPUT_FLAGS-} \
+      -g ${GOP-15} -f flv \
+      -c:v h264_nvenc -preset:v ${PRESET-llhq} -profile:v {$PROFILE-high} \
+      -c:a libfdk_aac -vbsf h264_mp4toannexb -strict experimental \
+      ${OUTPUT-}
+  network_mode: "host"
+  cap_add:
+    - ALL
 
 services:
-  telesur-en:
-    build:
-      context: .
-    cap_add:
-    - ALL
-    environment:
-      FFMPEG_FLAGS: -map i:0x411 -map i:0x412
-      FFMPEG_INPUT: udp://225.1.1.2:3000
-      FFMPEG_OUTPUT: rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/english.stream
-    network_mode: host
-    restart: always
-
   telesur-hd:
-    build:
-      context: .
-    cap_add:
-    - ALL
+    << : *ffmpeg
     environment:
-      FFMPEG_INPUT: udp://225.1.1.8:3000
-      FFMPEG_OUTPUT: rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/espanol.stream
-    network_mode: host
-    restart: always
+      INPUT: udp://225.1.1.8:3000
+      OUTPUT: rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/espanol.stream
+
+  telesur-en:
+    << : *ffmpeg
+    environment:
+      INPUT: udp://225.1.1.2:3000
+      OUTPUT: rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/english.stream
+      EXTRA_OUTPUT_FLAGS: "-map i:0x411 -map i:0x412"
