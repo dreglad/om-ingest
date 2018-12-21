@@ -1,8 +1,25 @@
-version: '3'
+version: '3.0'
 
 services:
-  ingest:
-    network_mode: "host"
-    build: .
+  telesur-en:
+    build:
+      context: .
     cap_add:
-      - ALL
+    - ALL
+    environment:
+      FFMPEG_FLAGS: -map i:0x411 -map i:0x412
+      FFMPEG_INPUT: udp://225.1.1.2:3000
+      FFMPEG_OUTPUT: rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/english.stream
+    network_mode: host
+    restart: always
+
+  telesur-hd:
+    build:
+      context: .
+    cap_add:
+    - ALL
+    environment:
+      FFMPEG_INPUT: udp://225.1.1.8:3000
+      FFMPEG_OUTPUT: rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/espanol.stream
+    network_mode: host
+    restart: always
