@@ -1,4 +1,4 @@
-FROM jrottenberg/ffmpeg
+FROM jrottenberg/ffmpeg:3.4
 
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES video,compute,utility
