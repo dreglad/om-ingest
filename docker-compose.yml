@@ -4,7 +4,6 @@ x-ffmoeg:
   &ffmpeg
   image: jrottenberg/ffmpeg:3.4
   restart: always
-  runtime: nvidia
   environment:
     - NVIDIA_VISIBLE_DEVICES=all
     - NVIDIA_DRIVER_CAPABILITIES=all
