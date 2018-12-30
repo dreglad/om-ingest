@@ -7,7 +7,7 @@ x-ffmoeg:
   command: >
       -i ${INPUT--} ${EXTRA_OUTPUT_FLAGS-} \
       -g ${GOP-15} -f flv \
-      -c:v h264_nvenc -preset:v ${PRESET-llhq} -profile:v {$PROFILE-high} \
+      -c:v h264_nvenc -preset:v ${PRESET-llhq} -profile:v ${PROFILE-high} \
       -c:a libfdk_aac -vbsf h264_mp4toannexb -strict experimental \
       ${OUTPUT-}
   network_mode: "host"
