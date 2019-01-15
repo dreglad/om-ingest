@@ -19,6 +19,7 @@ services:
       -g ${GOP-15} -f flv
       -c:v h264_nvenc -preset:v ${PRESET-llhq} -profile:v ${PROFILE-high}
       -c:a libfdk_aac -vbsf h264_mp4toannexb -strict experimental
+      -reconnect_at_eof -reconnect_streamed
       rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/espanol.stream
 
   telesur-en:
@@ -28,4 +29,5 @@ services:
       -g ${GOP-15} -f flv
       -c:v h264_nvenc -preset:v ${PRESET-llhq} -profile:v ${PROFILE-high}
       -c:a libfdk_aac -vbsf h264_mp4toannexb -strict experimental
+      -reconnect_at_eof -reconnect_streamed
       rtmp://admin:Webteles2@wsedvr.openmultimedia.biz:1935/live/english.stream
